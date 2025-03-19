@@ -1,0 +1,95 @@
+<section class="section section-muted" aria-describedby="text-simplifier-title">
+  <div class="section-content">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="h3 text-center mb-4" id="text-simplifier-title">Semplifica un testo amministrativo</h2>
+        </div>
+      </div>
+
+      <form [formGroup]="simplificationForm" (ngSubmit)="simplify()">
+        <div class="row">
+          <div class="col">
+            <it-textarea label="Testo da semplificare"
+                         [rows]="5"
+                         (keyup)="FormUtils.autogrow($event)"
+                         formControlName="text"></it-textarea>
+
+            <div class="d-flex justify-content-center flex-nowrap">
+              <button class="w-50 me-2" type="submit" itButton="primary" size="sm">Semplifica</button>
+              <button class="w-50 ms-2" type="reset" itButton="danger" size="sm">Reset</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+@if (this.simplifiedText && this.metrics1 && this.metrics2) {
+  <section class="section">
+    <div class="section-content">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="h3 text-center mb-4" id="simplified-title">Semplificazione</h2>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="card-wrapper card-space">
+              <it-card shadow="true" borderBottom="true">
+                <h5 class="card-title h5 text-center">Processo di semplificazione <it-icon name="help-circle" size="xs" (click)="simplificationInfoModal.open()"></it-icon></h5>
+                <it-tab-container>
+                  <it-tab-item label="Step 1">
+                    <h6 class="h6 text-center">Proofreading</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.proofreading)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 2">
+                    <h6 class="h6 text-center">Normalizzazione riferimenti normativi</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.lex)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 3">
+                    <h6 class="h6 text-center">Connettivi difficili</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.connectives)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 4">
+                    <h6 class="h6 text-center">Espressioni burocratiche</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.expressions)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 5">
+                    <h6 class="h6 text-center">Divisione frasi</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.sentence_splitter)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 6">
+                    <h6 class="h6 text-center">Nominalizzazioni</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.nominalizations)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 7">
+                    <h6 class="h6 text-center">Verbi passivi</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.verbs)"></p>
+                  </it-tab-item>
+                  <it-tab-item label="Step 8" active="true">
+                    <h6 class="h6 text-center">Riorganizzazione frase</h6>
+                    <p class="text-justify" [innerHTML]="parseText(simplifications.sentence_reorganizer)"></p>
+                  </it-tab-item>
+                </it-tab-container>
+              </it-card>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <h2 class="h3 text-center mb-4" id="metrics-title">Confronto</h2>
+          </div>
+        </div>
+
+        <app-text-comparator [text1]="text" [text2]="simplifiedText" [metrics1]="metrics1" [metrics2]="metrics2" [similarity]="similarity" [diff]="diff"></app-text-comparator>
+      </div>
+    </div>
+  </section>
+}
+
+<app-simplification-info-modal #simplificationInfoModal></app-simplification-info-modal>

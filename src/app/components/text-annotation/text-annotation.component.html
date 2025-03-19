@@ -1,0 +1,16 @@
+<div class="text-container">
+  @for (line of highlightedText; track $index) {
+    <div class="text-line">
+      @for (part of line; track $index) {
+        <span class="text-segment">
+          <span class="text">{{ part.text }}</span>
+          <div class="underline-container">
+            @for (ann of part.annotations; track $index) {
+              <div class="underline" [style]="{'background-color': ann.color, 'top': ($index * 2) + 'px'}"></div>
+            }
+          </div>
+        </span>
+      }
+    </div>
+  }
+</div>

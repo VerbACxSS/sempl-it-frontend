@@ -1,0 +1,85 @@
+main {
+  min-height: 50vh;
+}
+
+::ng-deep {
+  // Text classes
+  .text-justify {
+    text-align: justify;
+  }
+
+  // Override default bootstrap notification styles
+  .notification {
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .h5 {
+      text-transform: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .notification {
+      width: 100%;
+      max-width: 80%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      .h5 {
+        text-transform: none;
+      }
+    }
+  }
+
+  // Override default bootstrap form styles
+  it-textarea {
+    label {
+      z-index: 1 !important;
+    }
+    textarea {
+      border-radius: 4px;
+      border-bottom: 1px solid #000 !important;
+      background: white !important;
+    }
+    textarea.is-invalid {
+      border-radius: 4px;
+      border-bottom: 1px solid #d9364f !important;
+      background: white !important;
+    }
+  }
+  it-input {
+    label {
+      z-index: 1 !important;
+    }
+  }
+
+
+  // Override default bootstrap chip styles
+  .chip {
+    min-width: 0;
+  }
+
+  // Override default bootstrap tab styles
+  it-tab-container {
+    .nav-tabs {
+      justify-content: center;
+    }
+  }
+}
+
+.spinner-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1056;
+
+  it-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,43 @@
+<section class="section section-muted" aria-describedby="text-analyzer-title">
+  <div class="section-content">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2 class="h3 text-center mb-4" id="text-analyzer-title">Analizza un testo amministrativo</h2>
+        </div>
+      </div>
+
+      <form [formGroup]="analyzerForm" (ngSubmit)="analyze()">
+        <div class="row">
+          <div class="col">
+            <it-textarea label="Testo da analizzare"
+                         [rows]="5"
+                         (keyup)="FormUtils.autogrow($event)"
+                         formControlName="text"></it-textarea>
+
+            <div class="d-flex justify-content-center flex-nowrap">
+              <button class="w-50 me-2" type="submit" itButton="primary" size="sm">Analizza</button>
+              <button class="w-50 ms-2" type="reset" itButton="danger" size="sm">Reset</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+@if (this.result) {
+  <section class="section" aria-describedby="result-title">
+    <div class="section-content">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h2 class="h3 text-center mb-4" id="result-title">Analisi</h2>
+          </div>
+        </div>
+
+        <app-text-metrics [text]="text" [textMetrics]="result"></app-text-metrics>
+      </div>
+    </div>
+  </section>
+}

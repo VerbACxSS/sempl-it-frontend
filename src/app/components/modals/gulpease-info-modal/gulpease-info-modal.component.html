@@ -1,0 +1,12 @@
+<it-modal footerShadow="true" closeButton="false" alignment="centered">
+  <ng-container modalTitle>Indice Gulpease</ng-container>
+
+  <p>Un indice di leggibilità specifico per l’italiano, basato sulla lunghezza media delle frasi e delle parole.</p>
+  <p><strong>Come si calcola</strong>: Si calcola utilizzando la seguente formula:</p>
+  <img src="https://latex.codecogs.com/svg.image?89&plus;\frac{300*frasi-10*caratteri}{tokens}" title="89+\frac{300*frasi-10*caratteri}{tokens}"  alt="Gulpease Formula"/>
+  <p><strong>Come si ottimizza</strong>: Un valore basso indica un testo difficile. Per aumentarlo, si devono ridurre la lunghezza delle frasi e usare parole più corte.</p>
+
+  <ng-container footer>
+    <button itButton="primary" size="sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+  </ng-container>
+</it-modal>

@@ -1,0 +1,250 @@
+<!-- Text -->
+<div class="row">
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Testo</h5>
+        <p class="text-justify" style="white-space: pre-wrap">{{text}}</p>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Basic -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Informazioni basilari</h2>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Tokens <it-icon name="help-circle" size="xs" (click)="tokensInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.basicEvaluation.nTokens }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Types <it-icon name="help-circle" size="xs" (click)="typesInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.basicEvaluation.nWords }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Lemmi <it-icon name="help-circle" size="xs" (click)="lemmasInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.basicEvaluation.nUniqueLemmas }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Caratteri <it-icon name="help-circle" size="xs" (click)="charactersInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.basicEvaluation.nCharsAll }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Frasi <it-icon name="help-circle" size="xs" (click)="sentencesInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.basicEvaluation.nSentences }}</p>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- POS -->
+<div class="row">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Parti del discorso</h2>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Distribuzione parti del discorso <it-icon name="help-circle" size="xs" (click)="posInfoModal.open()"></it-icon></h5>
+        <div echarts [options]="DEFAULT_POS_CHART_OPTION" [merge]="barChartOptions"></div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <fieldset class="text-center">
+          <legend></legend>
+          @for (filter of POS_FILTER; track $index) {
+            <it-checkbox [(ngModel)]="filter.value" inline="true">
+              <ng-container label>
+                <span [style]="{'border-bottom': '3px solid ' + filter.color}">{{filter.label}}</span>
+              </ng-container>
+            </it-checkbox>
+          }
+        </fieldset>
+        <app-text-annotation [text]="text" [annotations]="filterAnnotations(annotations.pos, POS_FILTER)"></app-text-annotation>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Verbs -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Verbi</h2>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Verbi attivi <it-icon name="help-circle" size="xs" (click)="activeVerbsInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.verbsEvaluation.nActiveVerbs }}</p>
+        <p class="kpi-small">{{ evalRate(textMetrics.verbsEvaluation.nActiveVerbs, textMetrics.verbsEvaluation.nVerbs) }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Verbi passivi <it-icon name="help-circle" size="xs" (click)="passiveVerbsInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.verbsEvaluation.nPassiveVerbs }}</p>
+        <p class="kpi-small">{{ evalRate(textMetrics.verbsEvaluation.nPassiveVerbs, textMetrics.verbsEvaluation.nVerbs) }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Verbi riflessivi | impersonali <it-icon name="help-circle" size="xs" (click)="reflectiveVerbsInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.verbsEvaluation.nReflectiveVerbs }}</p>
+        <p class="kpi-small">{{ evalRate(textMetrics.verbsEvaluation.nReflectiveVerbs, textMetrics.verbsEvaluation.nVerbs) }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <fieldset class="text-center">
+          <legend></legend>
+          @for (filter of VERBS_FILTER; track $index) {
+            <it-checkbox [(ngModel)]="filter.value" inline="true">
+              <ng-container label>
+                <span [style]="{'border-bottom': '3px solid ' + filter.color}">{{filter.label}}</span>
+              </ng-container>
+            </it-checkbox>
+          }
+        </fieldset>
+        <app-text-annotation [text]="text" [annotations]="filterAnnotations(annotations.verbs, VERBS_FILTER)"></app-text-annotation>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Lexicon -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Lessico</h2>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Vocabolario di base <it-icon name="help-circle" size="xs" (click)="easyTokensInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.lexiconEvaluation.nEasyTokens }}</p>
+        <p class="kpi-small">{{ evalRate(textMetrics.lexiconEvaluation.nEasyTokens, textMetrics.basicEvaluation.nTokens) }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Connettivi difficili <it-icon name="help-circle" size="xs" (click)="difficultConnectivesInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.lexiconEvaluation.nDifficultConnectives }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Latinismi <it-icon name="help-circle" size="xs" (click)="latinismsInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.lexiconEvaluation.nLatinisms }}</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <fieldset class="text-center">
+          <legend></legend>
+          @for (filter of LEXICON_FILTER; track $index) {
+            <it-checkbox [(ngModel)]="filter.value" inline="true">
+              <ng-container label>
+                <span [style]="{'border-bottom': '3px solid ' + filter.color}">{{filter.label}}</span>
+              </ng-container>
+            </it-checkbox>
+          }
+        </fieldset>
+        <app-text-annotation [text]="text" [annotations]="filterAnnotations(annotations.lexicon, LEXICON_FILTER)"></app-text-annotation>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Readability -->
+<div class="row">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Leggibilità</h2>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Indice Gulpease <it-icon name="help-circle" size="xs" (click)="gulpeaseInfoModal.open()"></it-icon></h5>
+        <div echarts [options]="DEFAULT_GULPEASE_CHART_OPTION" [merge]="gulpeaseChartOptions"></div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Indice Flesch-Vacca <it-icon name="help-circle" size="xs" (click)="fleschVaccaInfoModal.open()"></it-icon></h5>
+        <div echarts [options]="DEFAULT_FLESCH_CHART_OPTION" [merge]="fleschChartOptions"></div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Token-Type Ratio (TTR) <it-icon name="help-circle" size="xs" (click)="ttrInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ textMetrics.readabilityEvaluation.ttr.toFixed(0) }} %</p>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Densità lessicale <it-icon name="help-circle" size="xs" (click)="lexicalDensityInfoModal.open()"></it-icon></h5>
+        <p class="kpi">{{ (textMetrics.readabilityEvaluation.lexicalDensity).toFixed(0) }} %</p>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<app-tokens-info-modal #tokensInfoModal></app-tokens-info-modal>
+<app-types-info-modal #typesInfoModal></app-types-info-modal>
+<app-lemmas-info-modal #lemmasInfoModal></app-lemmas-info-modal>
+<app-characters-info-modal #charactersInfoModal></app-characters-info-modal>
+<app-sentences-info-modal #sentencesInfoModal></app-sentences-info-modal>
+
+<app-pos-info-modal #posInfoModal></app-pos-info-modal>
+
+<app-active-verbs-info-modal #activeVerbsInfoModal></app-active-verbs-info-modal>
+<app-passive-verbs-info-modal #passiveVerbsInfoModal></app-passive-verbs-info-modal>
+<app-reflective-verbs-info-modal #reflectiveVerbsInfoModal></app-reflective-verbs-info-modal>
+
+<app-easy-tokens-info-modal #easyTokensInfoModal></app-easy-tokens-info-modal>
+<app-difficult-connectives-info-modal #difficultConnectivesInfoModal></app-difficult-connectives-info-modal>
+<app-latinisms-info-modal #latinismsInfoModal></app-latinisms-info-modal>
+
+<app-gulpease-info-modal #gulpeaseInfoModal></app-gulpease-info-modal>
+<app-flesch-vacca-info-modal #fleschVaccaInfoModal></app-flesch-vacca-info-modal>
+<app-ttr-info-modal #ttrInfoModal></app-ttr-info-modal>
+<app-lexical-density-info-modal #lexicalDensityInfoModal></app-lexical-density-info-modal>

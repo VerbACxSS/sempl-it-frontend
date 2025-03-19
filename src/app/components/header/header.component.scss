@@ -1,0 +1,66 @@
+it-header {
+  // Override header logo
+  .logo {
+    max-width: 60px;
+    max-height: 60px;
+  }
+
+  @media (min-width: 992px) {
+    .logo {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  }
+
+  .it-brand-text {
+    padding-right: 0 !important;
+  }
+
+  @media (min-width: 400px) {
+    .it-brand-text {
+      padding-right: 1em !important;
+    }
+  }
+
+  // Override header width
+  .it-nav-wrapper .it-header-center-wrapper .container-fluid {
+    width: 100%;
+  }
+
+  @media (min-width: 576px) {
+    .it-nav-wrapper .it-header-center-wrapper .container-fluid {
+      max-width: 540px;
+    }
+  }
+  @media (min-width: 768px) {
+    .it-nav-wrapper .it-header-center-wrapper .container-fluid {
+      max-width: 720px;
+    }
+  }
+  @media (min-width: 992px) {
+    .it-nav-wrapper .it-header-center-wrapper .container-fluid {
+      max-width: 960px;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .it-nav-wrapper .it-header-center-wrapper .container-fluid {
+      max-width: 1176px;
+    }
+  }
+  @media screen and (min-width: 1400px) {
+    .it-nav-wrapper .it-header-center-wrapper .container-fluid {
+      max-width: 1320px;
+    }
+  }
+
+  // Override header links
+  a {
+    cursor: pointer !important;
+    text-decoration: none !important;
+  }
+
+  .navbar .navbar-collapsable .navbar-nav li.nav-item a.nav-link.active {
+    border-color: rgba(255, 255, 255, 1) !important;
+  }
+}
+

@@ -1,0 +1,12 @@
+<it-modal footerShadow="true" closeButton="false" alignment="centered">
+  <ng-container modalTitle>Indice Flesch-Vacca</ng-container>
+
+  <p>Un indice di leggibilità che misura la difficoltà di un testo basandosi sul numero medio di sillabe per parola e parole per frase.</p>
+  <p><strong>Come si calcola</strong>: Si calcola utilizzando la seguente formula:</p>
+  <img src="https://latex.codecogs.com/svg.image?206-65*\frac{sillabe}{tokens}-\frac{tokens}{frasi}" alt="Flesch-Vacca Formula"/>
+  <p><strong>Come si ottimizza</strong>: Aumentare il punteggio semplifica il testo e si ottiene ricudendo il numero di parole per frase e il numero di sillabe per parola.</p>
+
+  <ng-container footer>
+    <button itButton="primary" size="sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+  </ng-container>
+</it-modal>

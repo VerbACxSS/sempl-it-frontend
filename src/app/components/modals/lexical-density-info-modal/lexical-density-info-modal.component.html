@@ -1,0 +1,12 @@
+<it-modal footerShadow="true" closeButton="false" alignment="centered">
+  <ng-container modalTitle>Densità lessicale</ng-container>
+
+  <p>Il rapporto tra parole di contenuto (nomi, verbi, aggettivi, avverbi) e il numero totale di parole.</p>
+  <p><strong>Come si calcola</strong>: Si calcola utilizzando la seguente formula:</p>
+  <img src="https://latex.codecogs.com/svg.image?\frac{nomi+verbi+aggettivi+avverbi}{tokens}" title="\frac{nomi+verbi+aggettivi+avverbi}{tokens}"  alt="Densità lessicale Formula"/>
+  <p><strong>Come si ottimizza</strong>: Un valore troppo alto può indicare un testo denso e difficile, mentre un valore troppo basso può rendere il testo povero di significato.</p>
+
+  <ng-container footer>
+    <button itButton="primary" size="sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+  </ng-container>
+</it-modal>

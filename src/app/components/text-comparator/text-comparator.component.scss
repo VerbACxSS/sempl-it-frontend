@@ -1,0 +1,55 @@
+it-icon {
+  cursor: pointer;
+}
+
+.kpi-comparison {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.kpi-full {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.kpi {
+  font-size: 3rem;
+  width: 40%;
+  text-align: center;
+}
+.kpi-text {
+  font-size: 3rem;
+  text-align: center;
+}
+.kpi-small {
+  font-size: 1.2rem;
+  text-align: center;
+}
+.kpi-delta {
+  font-size: 1.2rem;
+  width: 20%;
+  text-align: center;
+}
+
+:host ::ng-deep it-card {
+  .card {
+    margin-bottom: 1em;
+  }
+  .card:after {
+    display: none !important;
+  }
+}
+
+.positive-increment {
+  color: green;
+}
+.negative-increment {
+  color: red;
+}
+.no-increment {
+  color: black;
+}

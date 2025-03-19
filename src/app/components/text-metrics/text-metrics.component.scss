@@ -1,0 +1,25 @@
+it-icon {
+  cursor: pointer;
+}
+
+.kpi {
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 3em;
+}
+
+.kpi-small {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+:host ::ng-deep it-card {
+  .card {
+    margin-bottom: 1em;
+  }
+  .card:after {
+    display: none !important;
+  }
+}

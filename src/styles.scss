@@ -1,0 +1,7 @@
+// Import bootstrap-italia styles
+@import "bootstrap-italia/src/scss/bootstrap-italia";
+
+// All pages have the max screen height the footer is always at bottom
+body {
+  min-height: 100vh;
+}

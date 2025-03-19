@@ -1,0 +1,450 @@
+<!-- Text -->
+<div class="row">
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Testo originale</h5>
+        <p class="text-justify" style="white-space: pre-wrap">{{text1}}</p>
+      </it-card>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Testo semplificato</h5>
+        <p class="text-justify" style="white-space: pre-wrap">{{text2}}</p>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Basic -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Informazioni basilari</h2>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Tokens <it-icon name="help-circle" size="xs" (click)="tokensInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{metrics1.basicEvaluation.nTokens}}</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.basicEvaluation.nTokens, metrics2.basicEvaluation.nTokens)">
+            {{evalDelta(metrics1.basicEvaluation.nTokens, metrics2.basicEvaluation.nTokens)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{metrics2.basicEvaluation.nTokens}}</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Types <it-icon name="help-circle" size="xs" (click)="typesInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{metrics1.basicEvaluation.nWords}}</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.basicEvaluation.nWords, metrics2.basicEvaluation.nWords)">
+            {{evalDelta(metrics1.basicEvaluation.nWords, metrics2.basicEvaluation.nWords)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{metrics2.basicEvaluation.nWords}}</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Lemmi <it-icon name="help-circle" size="xs" (click)="lemmasInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{metrics1.basicEvaluation.nUniqueLemmas}}</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.basicEvaluation.nWords, metrics2.basicEvaluation.nUniqueLemmas)">
+            {{evalDelta(metrics1.basicEvaluation.nUniqueLemmas, metrics2.basicEvaluation.nUniqueLemmas)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{metrics2.basicEvaluation.nUniqueLemmas}}</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Caratteri <it-icon name="help-circle" size="xs" (click)="charactersInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{metrics1.basicEvaluation.nCharsAll}}</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.basicEvaluation.nCharsAll, metrics2.basicEvaluation.nCharsAll)">
+            {{evalDelta(metrics1.basicEvaluation.nCharsAll, metrics2.basicEvaluation.nCharsAll)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{metrics2.basicEvaluation.nCharsAll}}</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Frasi <it-icon name="help-circle" size="xs" (click)="sentencesInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{metrics1.basicEvaluation.nSentences}}</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.basicEvaluation.nSentences, metrics2.basicEvaluation.nSentences)">
+            {{evalDelta(metrics1.basicEvaluation.nSentences, metrics2.basicEvaluation.nSentences)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{metrics2.basicEvaluation.nSentences}}</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- POS -->
+<div class="row">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Parti del discorso</h2>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Distribuzione parti del discorso <it-icon name="help-circle" size="xs" (click)="posInfoModal.open()"></it-icon></h5>
+        <div echarts [options]="DEFAULT_POS_CHART_OPTION" [merge]="barChartOptions"></div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <fieldset class="text-center">
+          <legend></legend>
+          @for (filter of POS_FILTER; track $index) {
+            <it-checkbox [(ngModel)]="filter.value" inline="true">
+              <ng-container label>
+                <span [style]="{'border-bottom': '3px solid ' + filter.color}">{{filter.label}}</span>
+              </ng-container>
+            </it-checkbox>
+          }
+        </fieldset>
+        <it-tab-container>
+          <it-tab-item label="Testo originale" active="true">
+            <app-text-annotation [text]="text1" [annotations]="filterAnnotations(annotationsText1.pos, POS_FILTER)"></app-text-annotation>
+          </it-tab-item>
+          <it-tab-item label="Testo semplificato">
+            <app-text-annotation [text]="text2" [annotations]="filterAnnotations(annotationsText2.pos, POS_FILTER)"></app-text-annotation>
+          </it-tab-item>
+        </it-tab-container>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Verbs -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Verbi</h2>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Verbi attivi <it-icon name="help-circle" size="xs" (click)="activeVerbsInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">
+            <div class="kpi-text">{{ metrics1.verbsEvaluation.nActiveVerbs }}</div>
+            <div class="kpi-small">{{ evalRate(metrics1.verbsEvaluation.nActiveVerbs, metrics1.posEvaluation.nVerbs) }}</div>
+          </div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.verbsEvaluation.nActiveVerbs, metrics2.verbsEvaluation.nActiveVerbs)">
+            {{evalDelta(metrics1.verbsEvaluation.nActiveVerbs, metrics2.verbsEvaluation.nActiveVerbs)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">
+            <div class="kpi-text">{{ metrics2.verbsEvaluation.nActiveVerbs }}</div>
+            <div class="kpi-small">{{ evalRate(metrics2.verbsEvaluation.nActiveVerbs, metrics2.posEvaluation.nVerbs) }}</div>
+          </div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Verbi passivi <it-icon name="help-circle" size="xs" (click)="passiveVerbsInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">
+            <div class="kpi-text">{{ metrics1.verbsEvaluation.nPassiveVerbs }}</div>
+            <div class="kpi-small">{{ evalRate(metrics1.verbsEvaluation.nPassiveVerbs, metrics1.posEvaluation.nVerbs) }}</div>
+          </div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.verbsEvaluation.nPassiveVerbs, metrics2.verbsEvaluation.nPassiveVerbs)">
+            {{evalDelta(metrics1.verbsEvaluation.nPassiveVerbs, metrics2.verbsEvaluation.nPassiveVerbs)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">
+            <div class="kpi-text">{{ metrics2.verbsEvaluation.nPassiveVerbs }}</div>
+            <div class="kpi-small">{{ evalRate(metrics2.verbsEvaluation.nPassiveVerbs, metrics2.posEvaluation.nVerbs) }}</div>
+          </div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-4">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Verbi riflessivi | impersonali <it-icon name="help-circle" size="xs" (click)="reflectiveVerbsInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">
+            <div class="kpi-text">{{ metrics1.verbsEvaluation.nReflectiveVerbs }}</div>
+            <div class="kpi-small">{{ evalRate(metrics1.verbsEvaluation.nReflectiveVerbs, metrics1.posEvaluation.nVerbs) }}</div>
+          </div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.verbsEvaluation.nReflectiveVerbs, metrics2.verbsEvaluation.nReflectiveVerbs)">
+            {{evalDelta(metrics1.verbsEvaluation.nReflectiveVerbs, metrics2.verbsEvaluation.nReflectiveVerbs)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">
+            <div class="kpi-text">{{ metrics2.verbsEvaluation.nReflectiveVerbs }}</div>
+            <div class="kpi-small">{{ evalRate(metrics2.verbsEvaluation.nReflectiveVerbs, metrics2.posEvaluation.nVerbs) }}</div>
+          </div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <fieldset class="text-center">
+          <legend></legend>
+          @for (filter of VERBS_FILTER; track $index) {
+            <it-checkbox [(ngModel)]="filter.value" inline="true">
+              <ng-container label>
+                <span [style]="{'border-bottom': '3px solid ' + filter.color}">{{filter.label}}</span>
+              </ng-container>
+            </it-checkbox>
+          }
+        </fieldset>
+        <it-tab-container>
+          <it-tab-item label="Testo originale" active="true">
+            <app-text-annotation [text]="text1" [annotations]="filterAnnotations(annotationsText1.verbs, VERBS_FILTER)"></app-text-annotation>
+          </it-tab-item>
+          <it-tab-item label="Testo semplificato">
+            <app-text-annotation [text]="text2" [annotations]="filterAnnotations(annotationsText2.verbs, VERBS_FILTER)"></app-text-annotation>
+          </it-tab-item>
+        </it-tab-container>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Lexicon -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Lessico</h2>
+  </div>
+
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Vocabolario di base <it-icon name="help-circle" size="xs" (click)="easyTokensInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">
+            <div class="kpi-text">{{ metrics1.lexiconEvaluation.nEasyTokens }}</div>
+            <div class="kpi-small">{{ evalRate(metrics1.lexiconEvaluation.nEasyTokens, metrics1.basicEvaluation.nTokens) }}</div>
+          </div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.lexiconEvaluation.nEasyTokens, metrics2.lexiconEvaluation.nEasyTokens)">
+            {{evalDelta(metrics1.lexiconEvaluation.nEasyTokens, metrics2.lexiconEvaluation.nEasyTokens)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">
+            <div class="kpi-text">{{ metrics2.lexiconEvaluation.nEasyTokens }}</div>
+            <div class="kpi-small">{{ evalRate(metrics2.lexiconEvaluation.nEasyTokens, metrics2.basicEvaluation.nTokens) }}</div>
+          </div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Connettivi difficili <it-icon name="help-circle" size="xs" (click)="difficultConnectivesInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">
+            <div class="kpi-text">{{ metrics1.lexiconEvaluation.nDifficultConnectives }}</div>
+          </div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.lexiconEvaluation.nDifficultConnectives, metrics2.lexiconEvaluation.nDifficultConnectives)">
+            {{evalDelta(metrics1.lexiconEvaluation.nDifficultConnectives, metrics2.lexiconEvaluation.nDifficultConnectives)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">
+            <div class="kpi-text">{{ metrics2.lexiconEvaluation.nDifficultConnectives }}</div>
+          </div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Latinismi <it-icon name="help-circle" size="xs" (click)="latinismsInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">
+            <div class="kpi-text">{{ metrics1.lexiconEvaluation.nLatinisms }}</div>
+          </div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.lexiconEvaluation.nLatinisms, metrics2.lexiconEvaluation.nLatinisms)">
+            {{evalDelta(metrics1.lexiconEvaluation.nLatinisms, metrics2.lexiconEvaluation.nLatinisms)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">
+            <div class="kpi-text">{{ metrics2.lexiconEvaluation.nLatinisms }}</div>
+          </div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <fieldset class="text-center">
+          <legend></legend>
+          @for (filter of LEXICON_FILTER; track $index) {
+            <it-checkbox [(ngModel)]="filter.value" inline="true">
+              <ng-container label>
+                <span [style]="{'border-bottom': '3px solid ' + filter.color}">{{filter.label}}</span>
+              </ng-container>
+            </it-checkbox>
+          }
+        </fieldset>
+        <it-tab-container>
+          <it-tab-item label="Testo originale" active="true">
+            <app-text-annotation [text]="text1" [annotations]="filterAnnotations(annotationsText1.lexicon, LEXICON_FILTER)"></app-text-annotation>
+          </it-tab-item>
+          <it-tab-item label="Testo semplificato">
+            <app-text-annotation [text]="text2" [annotations]="filterAnnotations(annotationsText2.lexicon, LEXICON_FILTER)"></app-text-annotation>
+          </it-tab-item>
+        </it-tab-container>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Readability -->
+<div class="row">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Leggibilità</h2>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Indice Gulpease <it-icon name="help-circle" size="xs" (click)="gulpeaseInfoModal.open()"></it-icon></h5>
+        <div echarts [options]="DEFAULT_GULPEASE_CHART_OPTION" [merge]="gulpeaseChartOptions"></div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Indice Flesch-Vacca <it-icon name="help-circle" size="xs" (click)="fleschVaccaInfoModal.open()"></it-icon></h5>
+        <div echarts [options]="DEFAULT_FLESCH_CHART_OPTION" [merge]="fleschChartOptions"></div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Token-Type Ratio (TTR) <it-icon name="help-circle" size="xs" (click)="ttrInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{ (metrics1.readabilityEvaluation.ttr).toFixed(0)}} %</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.readabilityEvaluation.ttr, metrics2.readabilityEvaluation.ttr)">
+            {{evalDelta(metrics1.readabilityEvaluation.ttr, metrics2.readabilityEvaluation.ttr)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{ (metrics2.readabilityEvaluation.ttr).toFixed(0)}} %</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Densità lessicale <it-icon name="help-circle" size="xs" (click)="lexicalDensityInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi" itTooltip="Testo originale">{{ (metrics1.readabilityEvaluation.lexicalDensity).toFixed(0) }} %</div>
+          <div class="kpi-delta" [ngClass]="evalDeltaClass(metrics1.readabilityEvaluation.lexicalDensity, metrics2.readabilityEvaluation.lexicalDensity)">
+            {{evalDelta(metrics1.readabilityEvaluation.lexicalDensity, metrics2.readabilityEvaluation.lexicalDensity)}} %
+          </div>
+          <div class="kpi" itTooltip="Testo semplificato">{{ (metrics2.readabilityEvaluation.lexicalDensity).toFixed(0) }} %</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Similarity -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Similarità</h2>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Similarità semantica <it-icon name="help-circle" size="xs" (click)="semanticSimilarityInfoModal.open()"></it-icon></h5>
+        <div class="kpi-comparison">
+          <div class="kpi">{{ (similarity.semanticSimilarity).toFixed(0)}} %</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<!-- Differences -->
+<div class="row justify-content-center">
+  <div class="col-12">
+    <h2 class="h4 text-center mb-4">Differenze</h2>
+  </div>
+  <div class="col-12">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Edit distance <it-icon name="help-circle" size="xs" (click)="editDistanceInfoModal.open()"></it-icon></h5>
+        <div class="kpi-full">
+          <div class="kpi-text">{{ diff.editDistance }}</div>
+          <div class="kpi-small">{{ (diff.editDistance / metrics1.basicEvaluation.nCharsAll * 100.0).toFixed(0)}} %</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Tokens aggiunti <it-icon name="help-circle" size="xs" (click)="addedTokensInfoModal.open()"></it-icon></h5>
+        <div class="kpi-full">
+          <div class="kpi-text">{{ diff.nAddedTokens }}</div>
+          <div class="kpi-small">{{ (diff.nAddedTokens / metrics1.basicEvaluation.nTokensAll * 100.0).toFixed(0)}} %</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+
+  <div class="col-12 col-lg-6">
+    <div class="card-wrapper card-space">
+      <it-card shadow="true" borderBottom="true">
+        <h5 class="card-title h5 text-center">Tokens eliminati <it-icon name="help-circle" size="xs" (click)="deletedTokensInfoModal.open()"></it-icon></h5>
+        <div class="kpi-full">
+          <div class="kpi-text">{{ diff.nDeletedTokens }}</div>
+          <div class="kpi-small">{{ (diff.nDeletedTokens / metrics1.basicEvaluation.nTokensAll * 100.0).toFixed(0)}} %</div>
+        </div>
+      </it-card>
+    </div>
+  </div>
+</div>
+
+<app-tokens-info-modal #tokensInfoModal></app-tokens-info-modal>
+<app-types-info-modal #typesInfoModal></app-types-info-modal>
+<app-lemmas-info-modal #lemmasInfoModal></app-lemmas-info-modal>
+<app-characters-info-modal #charactersInfoModal></app-characters-info-modal>
+<app-sentences-info-modal #sentencesInfoModal></app-sentences-info-modal>
+
+<app-pos-info-modal #posInfoModal></app-pos-info-modal>
+
+<app-active-verbs-info-modal #activeVerbsInfoModal></app-active-verbs-info-modal>
+<app-passive-verbs-info-modal #passiveVerbsInfoModal></app-passive-verbs-info-modal>
+<app-reflective-verbs-info-modal #reflectiveVerbsInfoModal></app-reflective-verbs-info-modal>
+
+<app-easy-tokens-info-modal #easyTokensInfoModal></app-easy-tokens-info-modal>
+<app-difficult-connectives-info-modal #difficultConnectivesInfoModal></app-difficult-connectives-info-modal>
+<app-latinisms-info-modal #latinismsInfoModal></app-latinisms-info-modal>
+
+<app-gulpease-info-modal #gulpeaseInfoModal></app-gulpease-info-modal>
+<app-flesch-vacca-info-modal #fleschVaccaInfoModal></app-flesch-vacca-info-modal>
+<app-ttr-info-modal #ttrInfoModal></app-ttr-info-modal>
+<app-lexical-density-info-modal #lexicalDensityInfoModal></app-lexical-density-info-modal>
+
+<app-semantic-similarity-info-modal #semanticSimilarityInfoModal></app-semantic-similarity-info-modal>
+<app-edit-distance-info-modal #editDistanceInfoModal></app-edit-distance-info-modal>
+<app-added-tokens-info-modal #addedTokensInfoModal></app-added-tokens-info-modal>
+<app-deleted-tokens-info-modal #deletedTokensInfoModal></app-deleted-tokens-info-modal>

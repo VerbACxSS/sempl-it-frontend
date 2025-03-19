@@ -1,0 +1,11 @@
+<it-modal footerShadow="true" closeButton="false" alignment="centered">
+  <ng-container modalTitle>Edit distance</ng-container>
+
+  <p>Conta il numero minimo di operazioni (inserzioni, cancellazioni, sostituzioni) necessarie per trasformare un testo nell'altro.</p>
+  <p><strong>Come si calcola</strong>: L'algoritmo più comune è la distanza di Levenshtein, che conta le operazioni di modifica tra due stringhe.</p>
+  <p><strong>Come si ottimizza</strong>: Un valore basso indica che i testi sono simili, mentre un valore alto segnala grandi differenze. Per ridurre la distanza, si possono mantenere più parole invariate o minimizzare le modifiche strutturali.</p>
+
+  <ng-container footer>
+    <button itButton="primary" size="sm" type="button" data-bs-dismiss="modal">Chiudi</button>
+  </ng-container>
+</it-modal>
