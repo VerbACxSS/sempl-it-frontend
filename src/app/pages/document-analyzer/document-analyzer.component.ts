@@ -55,7 +55,7 @@ export class DocumentAnalyzerComponent {
           this.result = result.textEvaluation;
         },
         error: (error) => {
-          this.alertService.showError('Errore', error.error);
+          this.alertService.showError('Errore', "Si è verificato un errore durante l'analisi del testo. Riprova più tardi.");
         }
       });
   }

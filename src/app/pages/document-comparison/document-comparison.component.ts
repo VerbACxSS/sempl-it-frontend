@@ -64,7 +64,7 @@ export class DocumentComparisonComponent {
           this.diff = result.diff;
         },
         error: (error) => {
-          this.alertService.showError('Errore', error.error);
+          this.alertService.showError('Errore', "Si è verificato un errore durante l'analisi dei testi. Riprova più tardi.");
         }
       });
   }

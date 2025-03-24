@@ -82,7 +82,7 @@ export class AtsComponent {
           this.diff = response.diff;
         },
         error: (error) => {
-          this.alertService.showError('Errore', error.error);
+          this.alertService.showError('Errore', "Si è verificato un errore durante la semplificazione del testo. Riprova più tardi.");
         }
       });
   }
