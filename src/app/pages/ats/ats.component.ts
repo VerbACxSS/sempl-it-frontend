@@ -49,12 +49,17 @@ export class AtsComponent {
   constructor(private alertService: AlertService,
               private simplificationService: SimplificationService) {
     this.simplificationForm = new FormGroup({
-      text: new FormControl('', Validators.required),
+      text: new FormControl('', [Validators.required, Validators.maxLength(3000)])
     });
   }
 
   public parseText(text: string): string {
     return text.replace(/\r\n|\r|\n/g, '<br>');
+  }
+
+  public fieldLengthDescription(field: string): string {
+    const fieldLength = this.simplificationForm.get(field)?.value.length;
+    return fieldLength ? `${fieldLength}/3000` : '';
   }
 
   public simplify() {

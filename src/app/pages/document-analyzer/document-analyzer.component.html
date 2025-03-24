@@ -11,9 +11,10 @@
         <div class="row">
           <div class="col">
             <it-textarea label="Testo da analizzare"
+                         formControlName="text"
                          [rows]="5"
                          (keyup)="FormUtils.autogrow($event)"
-                         formControlName="text"></it-textarea>
+                         [description]="fieldLengthDescription('text')"></it-textarea>
 
             <div class="d-flex justify-content-center flex-nowrap">
               <button class="w-50 me-2" type="submit" itButton="primary" size="sm">Analizza</button>

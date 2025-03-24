@@ -11,15 +11,17 @@
         <div class="row">
           <div class="col-sm-6 col-12">
             <it-textarea label="Testo originale"
+                         formControlName="text1"
                          [rows]="5"
                          (keyup)="FormUtils.autogrow($event)"
-                         formControlName="text1"></it-textarea>
+                         [description]="fieldLengthDescription('text1')"></it-textarea>
           </div>
           <div class="col-sm-6 col-12">
             <it-textarea label="Testo semplificato"
+                         formControlName="text2"
                          [rows]="5"
                          (keyup)="FormUtils.autogrow($event)"
-                         formControlName="text2"></it-textarea>
+                         [description]="fieldLengthDescription('text2')"></it-textarea>
           </div>
         </div>
 

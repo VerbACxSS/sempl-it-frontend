@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ItButtonDirective, ItInputComponent, ItTextareaComponent} from 'design-angular-kit';
+import {ItButtonDirective, ItTextareaComponent} from 'design-angular-kit';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormUtils} from '../../utils/FormUtils';
 import {AlertService} from '../../services/alert.service';
@@ -13,7 +13,6 @@ import {DiffMetrics, SimilarityMetrics, TextMetrics} from '../../model/Metrics';
   styleUrl: './document-comparison.component.scss',
   templateUrl: './document-comparison.component.html',
   imports: [
-    ItInputComponent,
     ItButtonDirective,
     ItTextareaComponent,
     ReactiveFormsModule,
@@ -35,9 +34,14 @@ export class DocumentComparisonComponent {
   constructor(private alertService: AlertService,
               private analysisService: AnalysisService) {
     this.analyzerForm = new FormGroup({
-      text1: new FormControl('', Validators.required),
-      text2: new FormControl('', Validators.required),
+      text1: new FormControl('', [Validators.required, Validators.maxLength(3000)]),
+      text2: new FormControl('', [Validators.required, Validators.maxLength(3000)])
     });
+  }
+
+  public fieldLengthDescription(field: string): string {
+    const fieldLength = this.analyzerForm.get(field)?.value.length;
+    return fieldLength ? `${fieldLength}/3000` : '';
   }
 
   public compare(): void {

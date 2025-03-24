@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ItButtonDirective, ItInputComponent, ItTextareaComponent} from 'design-angular-kit';
+import {ItButtonDirective, ItTextareaComponent} from 'design-angular-kit';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {FormUtils} from '../../utils/FormUtils';
 import {AnalysisService} from '../../services/analysis.service';
@@ -13,7 +13,6 @@ import {TextMetricsComponent} from '../../components/text-metrics/text-metrics.c
   styleUrl: './document-analyzer.component.scss',
   templateUrl: './document-analyzer.component.html',
   imports: [
-    ItInputComponent,
     ItButtonDirective,
     ReactiveFormsModule,
     ItTextareaComponent,
@@ -32,8 +31,13 @@ export class DocumentAnalyzerComponent {
   constructor(private alertService: AlertService,
               private analysisService: AnalysisService) {
     this.analyzerForm = new FormGroup({
-      text: new FormControl('', Validators.required),
+      text: new FormControl('', [Validators.required, Validators.maxLength(3000)])
     });
+  }
+
+  public fieldLengthDescription(field: string): string {
+    const fieldLength = this.analyzerForm.get(field)?.value.length;
+    return fieldLength ? `${fieldLength}/3000` : '';
   }
 
   public analyze(): void {
