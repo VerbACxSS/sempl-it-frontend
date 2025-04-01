@@ -69,11 +69,20 @@ export class AtsComponent {
       return;
     }
 
-    const textToSimplify = this.simplificationForm.value.text;
-    this.simplificationService.simplify(textToSimplify)
+    // Use form text
+    this.doSimplification(this.simplificationForm.value.text);
+  }
+
+  public resimplify() {
+    // Use last saved text
+    this.doSimplification(this.text);
+  }
+
+  public doSimplification(text: string) {
+    this.simplificationService.simplify(text)
       .subscribe({
         next: (response) => {
-          this.text = textToSimplify;
+          this.text = text;
           this.simplifiedText = response.simplifiedText;
           this.simplifications = response.simplificationSteps;
           this.metrics1 = response.metrics1;
