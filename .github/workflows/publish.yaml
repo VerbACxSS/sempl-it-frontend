@@ -56,7 +56,7 @@ jobs:
         with:
           context: .
           build-args: |
-            ${{ BUILD_VERSION }}=production
+            BUILD_VERSION=production
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
