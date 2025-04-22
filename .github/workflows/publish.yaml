@@ -1,6 +1,5 @@
 name: Create and publish a Docker image
 
-# Configures this workflow to run every time a change is pushed to the branch called `main`.
 on:
   push:
     branches: ['main']
@@ -39,7 +38,8 @@ jobs:
           build-args: |
             BUILD_VERSION=production
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v2
         with:
