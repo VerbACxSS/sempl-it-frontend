@@ -9,7 +9,8 @@ export interface Simplification {
   sentence_splitter: string,
   nominalizations: string,
   verbs: string,
-  sentence_reorganizer: string
+  sentence_reorganizer: string,
+  explain: string,
 }
 
 export interface SimplificationResult {
