@@ -1,7 +1,11 @@
 # SEMPL-IT frontend
-This is the backend of the SEMPL-IT, a web app designed to simplify Italian administrative document using LLMs.
+This is the frontend of SEMPL-IT, a web app designed to simplify Italian administrative document using different fine-tuned LLMs.
 
-Check out the [backend](https://github.com/VerbACxSS/semp-it-backend) of the SEMPL-IT web app.
+## WebApp
+The SEMPL-IT web app consists of the following repositories:
+- Frontend: [GitHub Repository](https://github.com/VerbACxSS/semp-it-frontend)
+- Backend: [GitHub Repository](https://github.com/VerbACxSS/semp-it-backend)
+- Inference Module: [GitHub Repository](https://github.com/VerbACxSS/semp-it-intefence)
 
 ## Getting Started
 ### Pre-requisites
